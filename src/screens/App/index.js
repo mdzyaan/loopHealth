@@ -3,32 +3,36 @@
  * App
  *
  */
-import React, { 
-  useState, 
-  useEffect, 
-  useContext,
-} from 'react';
-import PropTypes from 'prop-types';
+import 'react-native-gesture-handler';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectAppState, makeSelectLoading, makeSelectError} from './selectors';
 import { AppAction } from './actions';
-import { View, Text, StyleSheet } from 'react-native';
-import * as globalSelectors from '../App/selectors';
+import { NavigationContainer } from '@react-navigation/native';
+import ProductList from '../ProductList';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
 
 export const App = props => {
 
   return (
-    <View style={styles.appContainer}>
-      <Text>
-        App screen
-      </Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Products" 
+          component={ProductList} 
+          options={{
+            headerShown: false
+          }}  
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-App.propTypes = {
-  // AppStart: PropTypes.func.isRequired,
-};
+
 export const mapStateToProps = (state,props) => {
   return createStructuredSelector({
     app: makeSelectAppState(),
@@ -44,9 +48,3 @@ export const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
     
-
-const styles =  StyleSheet.create({
-  appContainer: {
-    backgroundColor: 'white',
-  }
-});

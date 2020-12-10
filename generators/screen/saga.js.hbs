@@ -1,0 +1,21 @@
+// Imports: Dependencies
+import { delay, takeEvery, takeLatest, put } from 'redux-saga/effects';
+
+import { {{ upperCase name }}_START, {{ upperCase name }}_SUCCESS, {{ upperCase name }}_ERROR } from './constants';
+import { {{ properCase name }}Action } from './actions';
+
+function* fetch{{ camelCase name }}Data() {
+    try {
+        let data = {};
+
+
+        yield put({{ properCase name }}Action.success(data.data));
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
+export function* {{ camelCase name }}Saga() {
+    yield takeLatest({{ upperCase name }}_START, fetch{{ camelCase name }}Data);
+};

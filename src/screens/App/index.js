@@ -4,11 +4,11 @@
  *
  */
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectAppState, makeSelectLoading, makeSelectError} from './selectors';
-import { AppAction } from './actions';
+import { AppAction, fetchProductListAction } from './actions';
 import { NavigationContainer } from '@react-navigation/native';
 import ProductList from '../ProductList';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,6 +18,12 @@ const Stack = createStackNavigator();
 
 export const App = props => {
 
+  const { fetchProductListActionStart } = props;
+
+  useEffect(() => {
+    fetchProductListActionStart();
+  },[]);
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -42,7 +48,8 @@ export const mapStateToProps = (state,props) => {
 } 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    AppStart: ({ payload, metadata }) => dispatch(AppAction.start({ payload, metadata }))
+    AppStart: ({ payload, metadata }) => dispatch(AppAction.start({ payload, metadata })),
+    fetchProductListActionStart: () => dispatch(fetchProductListAction.start())
   };
 }
 

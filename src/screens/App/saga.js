@@ -1,8 +1,10 @@
 // Imports: Dependencies
-import { delay, takeEvery, takeLatest, put } from 'redux-saga/effects';
+import { call, takeEvery, takeLatest, put } from 'redux-saga/effects';
 
-import { APP_START, APP_SUCCESS, APP_ERROR } from './constants';
-import { AppAction } from './actions';
+import { APP_START, FETCH_PRODUCT_LIST_START } from './constants';
+import { AppAction , fetchProductListAction, setCategoriesList} from './actions';
+import request from '../../utils/request';
+import getCategoriesList from '../../utils/getCategoriesList';
 
 function* fetchappData() {
     try {
@@ -14,8 +16,23 @@ function* fetchappData() {
         console.log(error);
     }
 };
-// Watcher: Increase Counter Async
+
+
+function* fetchProductListData() {
+    try {
+        const response = yield call(request, {
+            method: 'get',
+            url: `https://demo7242716.mockable.io/products`,
+          });
+        yield put(setCategoriesList(getCategoriesList(response.data.products)))
+        yield put(fetchProductListAction.success([...response.data.products]));
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
 export function* appSaga() {
-    // Take Last Action Only
     yield takeLatest(APP_START, fetchappData);
+    yield takeLatest(FETCH_PRODUCT_LIST_START, fetchProductListData);
 };

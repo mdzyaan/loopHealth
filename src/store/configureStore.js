@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import appReducer from '../screens/App/reducer';
+import productListReducer from '../screens/ProductList/reducer';
 import { rootSaga } from './rootSaga';
 import createSagaMiddleware from 'redux-saga';
 
@@ -13,6 +14,7 @@ export default () => {
     const store = createStore(
         combineReducers({
             app: appReducer,
+            // products: productListReducer,
         }),
         composeEnhansers(applyMiddleware(sagaMiddleware))
     );

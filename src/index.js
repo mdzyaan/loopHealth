@@ -9,10 +9,12 @@ const store = configureStore();
  
 const theme = {
     ...DefaultTheme,
+    roundness: 2,
     colors: {
       ...DefaultTheme.colors,
       primary: 'tomato',
       accent: 'orange',
+      background: 'white'
     },
   };
 

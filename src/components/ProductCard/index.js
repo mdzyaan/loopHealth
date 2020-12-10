@@ -3,7 +3,7 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { Chip } from 'react-native-paper';
 import  { View,StyleSheet } from 'react-native';
 
-const ProductCard = ({img, title = 'Product', description = "Description", category = 'Others'}) => (
+const ProductCard = ({img ='https://ihatetomatoes.net/wp-content/uploads/2014/07/img_css3-spinning-preloader-01.png', title = 'Product', description = "Description", category = 'Others'}) => (
   <Card style={styles.cardContainer}>
       <Card.Cover source={{ uri: img }} />
     <Card.Content>

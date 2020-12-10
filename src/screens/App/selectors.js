@@ -25,6 +25,24 @@ const makeSelectError = () =>
     subState => subState.error,
   );
 
+const makeSelectProductError = () =>
+  createSelector(
+    selectAppDomain,
+    subState => subState.product,
+  );
+
+const makeSelectCategoriesError = () =>
+  createSelector(
+    selectAppDomain,
+    subState => subState.categories,
+  );
+
+const makeSelectSelectedCategoriesError = () =>
+  createSelector(
+    selectAppDomain,
+    subState => subState.selectedCategory,
+  );
 
 
-export { makeSelectAppState, makeSelectLoading, makeSelectError };
+
+export { makeSelectAppState, makeSelectLoading, makeSelectError ,makeSelectProductError,makeSelectCategoriesError, makeSelectSelectedCategoriesError};

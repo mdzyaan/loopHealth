@@ -1,7 +1,7 @@
 // Imports: Dependencies
-import { delay, takeEvery, takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 
-import { PRODUCTLIST_START, PRODUCTLIST_SUCCESS, PRODUCTLIST_ERROR } from './constants';
+import { PRODUCTLIST_START } from './constants';
 import { ProductListAction } from './actions';
 
 function* fetchproductListData() {

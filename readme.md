@@ -1,4 +1,3 @@
-# studyroom
 
 note:  Use YARN;
 
